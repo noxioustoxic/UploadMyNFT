@@ -39,7 +39,7 @@ contract Factory is Initializable,OwnableUpgradeable {
         view
         returns (string memory)
     {
-        return Erc721(collections[_index]).name();
+        return StandardNFT(collections[_index]).name();
     }
 
 
@@ -48,11 +48,11 @@ contract Factory is Initializable,OwnableUpgradeable {
         returns (address)
     {
        
-        Erc721 nCollection = new Erc721();
+        StandardNFT nCollection = new StandardNFT();
         ERC1967Proxy proxy = new ERC1967Proxy(
             address(nCollection),
             abi.encodeWithSelector(
-                Erc721(address(0)).initialize.selector,
+                StandardNFT(address(0)).initialize.selector,
                 _name,
                 _symbol,
                 _msgSender(),
